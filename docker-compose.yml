@@ -1,0 +1,17 @@
+version: '2'
+services:
+    web:
+        build: .
+        ports:
+            - "5000:5000"
+        volumes:
+            - .:/code
+        hostname: flaskapp
+    nginx:
+        build:
+          context: ./nginx
+        hostname: nginx
+        ports:
+            - "80:80"
+        depends_on:
+            - web
